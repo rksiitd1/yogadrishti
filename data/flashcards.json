@@ -1,0 +1,43 @@
+// data/flashcards.json
+[
+  {
+    "id": 1,
+    "text": "The body is your temple. Keep it pure and clean for the soul to reside in."
+  },
+  {
+    "id": 2,
+    "text": "Inhale the future, exhale the past."
+  },
+  {
+    "id": 3,
+    "text": "Yoga is the journey of the self, through the self, to the self."
+  },
+  {
+    "id": 4,
+    "text": "The pose begins when you want to leave it."
+  },
+  {
+    "id": 5,
+    "text": "Stillness is not the absence of movement, but the mastery of it."
+  },
+  {
+    "id": 6,
+    "text": "Let your practice be a celebration of life."
+  },
+  {
+    "id": 7,
+    "text": "The longest journey of any person is the journey inward."
+  },
+  {
+    "id": 8,
+    "text": "Balance is not something you find, it's something you create."
+  },
+  {
+    "id": 9,
+    "text": "True meditation is about being fully present with everything that is."
+  },
+  {
+    "id": 10,
+    "text": "Be where you are, not where you think you should be."
+  }
+]
