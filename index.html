@@ -6,14 +6,16 @@
     <title>Yogadrishti - Ignite Your Inner Vision</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-red: #FF416C;
             --secondary-red: #FF4B2B;
             --primary-text: #FFFFFF;
-            --secondary-text: rgba(255, 255, 255, 0.8);
+            --secondary-text: rgba(255, 255, 255, 0.85);
             --bg-color: #141E30;
+            --glass-bg: rgba(255, 65, 108, 0.05);
+            --glass-border: rgba(255, 65, 108, 0.2);
         }
 
         * {
@@ -124,7 +126,6 @@
             perspective: 1000px;
         }
 
-        /* SUPER COOL: 3D Floating Icon Animation */
         .app-icon-container {
             width: 350px;
             height: 350px;
@@ -143,7 +144,6 @@
             left: 0;
         }
 
-        /* Glow effect for the icon */
         .app-icon-container::after {
             content: '';
             position: absolute;
@@ -158,6 +158,189 @@
             animation: pulse 4s ease-in-out infinite;
         }
         
+        /* --- GENERAL SECTION STYLING --- */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-text);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: rgba(255, 65, 108, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: -webkit-linear-gradient(var(--primary-red), var(--secondary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-card h3 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-text);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- WHY US SECTION --- */
+        .why-us-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 615px;
+            background: #111;
+            border-radius: 50px;
+            padding: 15px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            margin: 0 auto;
+            animation: float3D 12s ease-in-out infinite reverse; /* Re-using animation */
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800');
+            background-size: cover;
+            background-position: center;
+            border-radius: 40px;
+        }
+
+        .why-us-list .item {
+            margin-bottom: 2rem;
+        }
+
+        .why-us-list .item-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-text);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .why-us-list .item-title::before {
+            content: '✓';
+            margin-right: 12px;
+            color: var(--primary-red);
+            font-size: 1.8rem;
+        }
+
+        /* --- TESTIMONIAL SECTION --- */
+        .testimonial-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--primary-text);
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-text::before, .testimonial-text::after {
+            content: '“';
+            font-size: 4rem;
+            color: var(--primary-red);
+            opacity: 0.5;
+            position: relative;
+            top: 1rem;
+        }
+        .testimonial-text::after {
+            content: '”';
+        }
+
+        .testimonial-author {
+            font-weight: 500;
+            color: var(--primary-text);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        footer a {
+            color: var(--primary-text);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: var(--primary-red);
+        }
+
+        /* --- SCROLL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Keyframe Animations */
         @keyframes slideInFromLeft {
             0% { transform: translateX(-50px); opacity: 0; }
@@ -170,9 +353,9 @@
         }
 
         @keyframes float3D {
-            0% { transform: translateZ(0) rotateY(0deg) translateY(0); }
-            50% { transform: translateZ(40px) rotateY(20deg) translateY(-20px); }
-            100% { transform: translateZ(0) rotateY(0deg) translateY(0); }
+            0% { transform: rotateY(-10deg) translateY(0); }
+            50% { transform: rotateY(10deg) translateY(-20px); }
+            100% { transform: rotateY(-10deg) translateY(0); }
         }
         
         @keyframes pulse {
@@ -183,56 +366,39 @@
 
         /* Responsive Design */
         @media (max-width: 900px) {
-            .hero-content {
+            .hero-content, .why-us-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .hero-text {
-                order: 2;
-            }
-            .hero-visual {
-                order: 1;
-                margin-bottom: 3rem;
-            }
-            .hero-text h1 {
-                font-size: 3.5rem;
-            }
-            .hero-text p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .app-icon-container {
-                width: 280px;
-                height: 280px;
-            }
+            .hero-text { order: 2; }
+            .hero-visual { order: 1; margin-bottom: 3rem; }
+            .hero-text h1 { font-size: 3.5rem; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
+            .app-icon-container { width: 280px; height: 280px; }
+            .section-title { font-size: 2.8rem; }
+            .why-us-content { gap: 2rem; }
+            .why-us-text { order: 2; }
+            .why-us-visual { order: 1; margin-bottom: 2rem; }
+            .testimonial-text { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Particle background canvas -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Hero Section -->
     <header class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Ignite Your <span class="highlight">Inner Vision</span></h1>
                     <p>Discover daily wisdom from the heart of yoga. A beautifully crafted, ad-free experience designed to bring you a moment of calm, clarity, and inspiration.</p>
-                    
-                    <!-- IMPORTANT: Update the href="#" with your actual Indus Appstore link when it's live -->
                     <a href="#" class="download-button">
-                        Get it on
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-left: 8px;">
-                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.36 12.36L12.36 16.36C12.11 16.61 11.7 16.61 11.45 16.36L7.45 12.36C7.2 12.11 7.2 11.7 7.45 11.45L8.55 10.35C8.8 10.1 9.2 10.1 9.45 10.35L11 11.9L11 6C11 5.45 11.45 5 12 5C12.55 5 13 5.45 13 6L13 11.9L14.55 10.35C14.8 10.1 15.2 10.1 15.45 10.35L16.55 11.45C16.8 11.7 16.8 12.11 16.55 12.36H16.36Z" fill="white"/>
-                        </svg>
-                        <strong>Indus Appstore</strong>
+                        Get it on <strong>Indus Appstore</strong>
                     </a>
                 </div>
                 <div class="hero-visual">
                     <div class="app-icon-container">
-                        <!-- This uses your icon file from the root directory -->
                         <img src="yogadrishti-icon.png" alt="Yogadrishti App Icon" class="app-icon">
                     </div>
                 </div>
@@ -240,7 +406,87 @@
         </div>
     </header>
 
+    <main>
+        <!-- Features Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title reveal">A Sanctuary in Your Pocket</h2>
+                <p class="section-subtitle reveal">Yogadrishti is more than an app; it's a daily ritual for mindfulness. Explore features designed to calm your mind and elevate your spirit.</p>
+                <div class="features-grid">
+                    <div class="feature-card reveal" style="transition-delay: 100ms;">
+                        <div class="feature-icon">✨</div>
+                        <h3>Daily Wisdom</h3>
+                        <p>Receive a new, profound quote each day to inspire your practice on and off the mat.</p>
+                    </div>
+                    <div class="feature-card reveal" style="transition-delay: 200ms;">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Visual Splendor</h3>
+                        <p>Immerse yourself in a stunning visual experience with vibrant, animated color gradients on every card.</p>
+                    </div>
+                    <div class="feature-card reveal" style="transition-delay: 300ms;">
+                        <div class="feature-icon">🧘</div>
+                        <h3>Intuitive Flow</h3>
+                        <p>Effortlessly swipe through wisdom with a smooth, satisfying, and completely distraction-free interface.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Us Section -->
+        <section class="section">
+            <div class="container">
+                <div class="why-us-content">
+                    <div class="why-us-visual reveal">
+                        <div class="phone-mockup">
+                            <div class="phone-screen"></div>
+                        </div>
+                    </div>
+                    <div class="why-us-text reveal">
+                        <h2 class="section-title" style="text-align: left;">Designed for You</h2>
+                        <div class="why-us-list">
+                            <div class="item">
+                                <h3 class="item-title">Beautifully Simple</h3>
+                                <p>No clutter, no complex menus. Just pure, focused wisdom in a design that's a joy to use.</p>
+                            </div>
+                            <div class="item">
+                                <h3 class="item-title">Completely Ad-Free</h3>
+                                <p>Your peace is our priority. Enjoy an uninterrupted experience, always free from ads and distractions.</p>
+                            </div>
+                            <div class="item">
+                                <h3 class="item-title">Lightweight & Offline</h3>
+                                <p>Works perfectly without an internet connection. Your moment of calm is always accessible.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section class="section">
+            <div class="container">
+                 <div class="testimonial-card reveal">
+                     <p class="testimonial-text">Yogadrishti has become my favorite way to start the day. The quotes are insightful, and the app itself is a work of art. It’s a truly peaceful experience.</p>
+                     <p class="testimonial-author">- Priya, Yoga Enthusiast</p>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Yogadrishti. All Rights Reserved.</p>
+            <p>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </p>
+        </div>
+    </footer>
+
     <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
         // JavaScript for the SUPER ADVANCED particle animation background
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
@@ -249,35 +495,23 @@
 
         let particlesArray;
 
-        // Gradient for particles
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, '#FF416C');
-        gradient.addColorStop(1, '#FF4B2B');
-
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
-                this.x = x;
-                this.y = y;
-                this.directionX = directionX;
-                this.directionY = directionY;
-                this.size = size;
-                this.color = color;
+                this.x = x; this.y = y; this.directionX = directionX; this.directionY = directionY; this.size = size; this.color = color;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                gradient.addColorStop(0, 'rgba(255, 65, 108, 0.8)');
+                gradient.addColorStop(1, 'rgba(255, 75, 43, 0)');
+                ctx.fillStyle = gradient;
                 ctx.fill();
             }
             update() {
-                if (this.x > canvas.width || this.x < 0) {
-                    this.directionX = -this.directionX;
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.directionY = -this.directionY;
-                }
-                this.x += this.directionX;
-                this.y += this.directionY;
+                if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; }
+                if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; }
+                this.x += this.directionX; this.y += this.directionY;
                 this.draw();
             }
         }
@@ -286,12 +520,12 @@
             particlesArray = [];
             let numberOfParticles = (canvas.height * canvas.width) / 9000;
             for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 2) + 1;
-                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let size = (Math.random() * 2.5) + 1;
+                let x = (Math.random() * (innerWidth - size * 2));
+                let y = (Math.random() * (innerHeight - size * 2));
                 let directionX = (Math.random() * .4) - .2;
                 let directionY = (Math.random() * .4) - .2;
-                particlesArray.push(new Particle(x, y, directionX, directionY, size, gradient));
+                particlesArray.push(new Particle(x, y, directionX, directionY, size));
             }
         }
 
@@ -310,6 +544,21 @@
             canvas.width = innerWidth;
             canvas.height = innerHeight;
             init();
+        });
+
+        // JavaScript for reveal animations on scroll
+        document.addEventListener("DOMContentLoaded", function() {
+            const revealElements = document.querySelectorAll('.reveal');
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            revealElements.forEach(el => { observer.observe(el); });
         });
     </script>
 
