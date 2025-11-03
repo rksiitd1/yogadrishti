@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogadrishti - Your Daily Dose of Yoga Wisdom</title>
+    <title>Yogadrishti - Ignite Your Inner Vision</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* --- General Setup & Theming --- */
         :root {
-            --primary-color: #ffffff;
-            --text-color: rgba(255, 255, 255, 0.85);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --primary-red: #FF416C;
+            --secondary-red: #FF4B2B;
+            --primary-text: #FFFFFF;
+            --secondary-text: rgba(255, 255, 255, 0.8);
+            --bg-color: #141E30;
         }
 
         * {
@@ -27,338 +27,289 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-color);
-            background: linear-gradient(135deg, #1d2b64, #f8cdda, #1d2b64, #f8cdda);
-            background-size: 400% 400%;
-            animation: gradientAnimation 25s ease infinite;
+            font-family: 'Roboto', sans-serif;
+            color: var(--secondary-text);
+            background-color: var(--bg-color);
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* --- Animated Gradient Background --- */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* SUPER ADVANCED: Animated Particle Background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
-        /* --- Reusable Container --- */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* --- Hero Section --- */
+        /* --- HERO SECTION --- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 0;
+            text-align: left;
+            padding-top: 80px;
+            position: relative;
         }
 
         .hero-content {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             align-items: center;
         }
 
-        .app-icon {
-            width: 150px;
-            height: 150px;
-            border-radius: 28px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            margin-bottom: 2rem;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
             font-weight: 700;
-            color: var(--primary-color);
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 0.5rem;
+            color: var(--primary-text);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            animation: slideInFromLeft 1s ease-out forwards;
         }
 
-        .hero p {
-            font-size: 1.5rem;
+        .hero-text .highlight {
+            background: -webkit-linear-gradient(var(--primary-red), var(--secondary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
             font-weight: 300;
-            max-width: 600px;
+            max-width: 500px;
             margin-bottom: 2.5rem;
+            animation: slideInFromLeft 1s ease-out 0.2s forwards;
+            opacity: 0;
         }
 
-        .download-buttons {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .btn {
+        .download-button {
             display: inline-block;
-            padding: 15px 35px;
+            padding: 18px 40px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--primary-color);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: linear-gradient(90deg, var(--primary-red), var(--secondary-red));
+            color: var(--primary-text);
+            box-shadow: 0 10px 30px rgba(255, 65, 108, 0.4);
+            border: none;
+            cursor: pointer;
+            animation: slideInFromLeft 1s ease-out 0.4s forwards;
+            opacity: 0;
         }
 
-        .btn:hover {
+        .download-button:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(255, 65, 108, 0.6);
         }
 
-        /* --- Sections General Styling --- */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 4rem;
-        }
-
-        /* --- Phone Mockup Section --- */
-        .showcase {
+        .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
+            perspective: 1000px;
         }
 
-        .phone-mockup {
-            width: 300px;
-            height: 600px;
-            background: #111;
-            border-radius: 40px;
-            padding: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+        /* SUPER COOL: 3D Floating Icon Animation */
+        .app-icon-container {
+            width: 350px;
+            height: 350px;
             position: relative;
+            transform-style: preserve-3d;
+            animation: float3D 10s ease-in-out infinite, fadeIn 1.5s ease-out forwards;
         }
         
-        .phone-mockup::before { /* Notch */
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 15px;
-            background: #111;
-            border-radius: 0 0 10px 10px;
-            z-index: 2;
-        }
-
-        .phone-screen {
+        .app-icon {
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800');
-            background-size: cover;
-            background-position: center;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 300;
+            border-radius: 24%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
-        .screen-text {
-            background: linear-gradient(45deg, #ff7e5f, #feb47b);
-            padding: 20px 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        /* Glow effect for the icon */
+        .app-icon-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 110%;
+            height: 110%;
+            background: radial-gradient(circle, rgba(255, 75, 43, 0.4) 0%, rgba(255, 75, 43, 0) 60%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: blur(20px);
+            animation: pulse 4s ease-in-out infinite;
         }
         
-        /* --- Features Section --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+        /* Keyframe Animations */
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
         }
 
-        .feature-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s ease;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float3D {
+            0% { transform: translateZ(0) rotateY(0deg) translateY(0); }
+            50% { transform: translateZ(40px) rotateY(20deg) translateY(-20px); }
+            100% { transform: translateZ(0) rotateY(0deg) translateY(0); }
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
         }
 
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--glass-border);
-        }
-        
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            margin: 0 10px;
-            transition: opacity 0.3s ease;
-        }
-        
-        footer a:hover {
-            opacity: 0.7;
-        }
-
-        /* --- Scroll Animation --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            .hero p {
-                font-size: 1.2rem;
+            .hero-text {
+                order: 2;
             }
-            .download-buttons {
-                flex-direction: column;
+            .hero-visual {
+                order: 1;
+                margin-bottom: 3rem;
+            }
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .app-icon-container {
+                width: 280px;
+                height: 280px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Particle background canvas -->
+    <canvas id="particle-canvas"></canvas>
+
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <div class="hero-content fade-in">
-                <img src="https://i.imgur.com/eB4gQ2s.png" alt="Yogadrishti App Icon" class="app-icon">
-                <h1>Yogadrishti</h1>
-                <p>Your daily dose of yoga wisdom. Swipe for calm, focus, and inspiration in a beautifully designed experience.</p>
-                <div class="download-buttons">
-                    <!-- TODO: Replace "#" with your actual Google Play Store link when ready -->
-                    <a href="#" class="btn">Download on the Play Store</a>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Ignite Your <span class="highlight">Inner Vision</span></h1>
+                    <p>Discover daily wisdom from the heart of yoga. A beautifully crafted, ad-free experience designed to bring you a moment of calm, clarity, and inspiration.</p>
+                    
+                    <!-- IMPORTANT: Update the href="#" with your actual Indus Appstore link when it's live -->
+                    <a href="#" class="download-button">
+                        Get it on
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-left: 8px;">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.36 12.36L12.36 16.36C12.11 16.61 11.7 16.61 11.45 16.36L7.45 12.36C7.2 12.11 7.2 11.7 7.45 11.45L8.55 10.35C8.8 10.1 9.2 10.1 9.45 10.35L11 11.9L11 6C11 5.45 11.45 5 12 5C12.55 5 13 5.45 13 6L13 11.9L14.55 10.35C14.8 10.1 15.2 10.1 15.45 10.35L16.55 11.45C16.8 11.7 16.8 12.11 16.55 12.36H16.36Z" fill="white"/>
+                        </svg>
+                        <strong>Indus Appstore</strong>
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <div class="app-icon-container">
+                        <!-- This uses your icon file from the root directory -->
+                        <img src="yogadrishti-icon.png" alt="Yogadrishti App Icon" class="app-icon">
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
-        <!-- Showcase Section -->
-        <section id="showcase">
-            <div class="container fade-in">
-                <div class="showcase">
-                    <div class="phone-mockup">
-                        <div class="phone-screen">
-                            <div class="screen-text">
-                                The body is your temple. Keep it pure and clean for the soul to reside in.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features">
-            <div class="container">
-                <h2 class="section-title fade-in">Find Your Inner Peace</h2>
-                <div class="features-grid">
-                    <div class="feature-card fade-in" style="transition-delay: 100ms;">
-                        <div class="feature-icon">✨</div>
-                        <h3>Daily Inspiration</h3>
-                        <p>Start your day with a profound quote to center your thoughts and set a positive intention.</p>
-                    </div>
-                    <div class="feature-card fade-in" style="transition-delay: 200ms;">
-                        <div class="feature-icon">🎨</div>
-                        <h3>Stunning Design</h3>
-                        <p>Experience wisdom through a vibrant, colorful interface with unique gradients for every card.</p>
-                    </div>
-                    <div class="feature-card fade-in" style="transition-delay: 300ms;">
-                        <div class="feature-icon">🧘</div>
-                        <h3>Mindful Moments</h3>
-                        <p>A simple, clutter-free space designed to give you a moment of calm in your busy day.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Yogadrishti. All Rights Reserved.</p>
-            <p>
-                <!-- Make sure this link points to your privacy policy file! -->
-                <a href="privacy-policy.html">Privacy Policy</a>
-            </p>
-        </div>
-    </footer>
-
     <script>
-        // JavaScript for fade-in animations on scroll
-        document.addEventListener("DOMContentLoaded", function() {
-            const fadeInElements = document.querySelectorAll('.fade-in');
+        // JavaScript for the SUPER ADVANCED particle animation background
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-            const observerOptions = {
-                root: null, // relative to the viewport
-                rootMargin: '0px',
-                threshold: 0.1 // 10% of the item must be visible
-            };
+        let particlesArray;
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Animate only once
-                    }
-                });
-            }, observerOptions);
+        // Gradient for particles
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#FF416C');
+        gradient.addColorStop(1, '#FF4B2B');
 
-            fadeInElements.forEach(el => {
-                observer.observe(el);
-            });
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, gradient));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            init();
         });
     </script>
 
