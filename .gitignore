@@ -4,6 +4,7 @@
 node_modules/
 
 # Expo
+.idea/
 .expo/
 dist/
 web-build/
