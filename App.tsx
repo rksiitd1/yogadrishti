@@ -1,3 +1,10 @@
+/**
+ * @file App.tsx
+ * @description The main component for the Yogadrishti flashcard application.
+ * This component orchestrates the display and interaction of flashcards,
+ * including gesture-based navigation and animations.
+ */
+
 import { StyleSheet, Text, View, useWindowDimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
@@ -9,19 +16,29 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import flashcardsData from './data/flashcards.json';
 
+/**
+ * @interface Flashcard
+ * @description Represents the structure of a single flashcard object.
+ */
 interface Flashcard {
   id: number;
   text: string;
 }
 
-// A more lively spring configuration
+/**
+ * @const {object} SPRING_CONFIG
+ * @description A lively spring configuration for reanimated animations.
+ */
 const SPRING_CONFIG = {
   damping: 20,
   stiffness: 90,
   mass: 0.8,
 };
 
-// A vibrant color palette for the cards
+/**
+ * @const {string[][]} VIBRANT_COLORS
+ * @description A vibrant color palette for the cards, each entry is a gradient.
+ */
 const VIBRANT_COLORS = [
   ['#ff7e5f', '#feb47b'], // Sunny Orange
   ['#6a11cb', '#2575fc'], // Royal Blue
@@ -35,21 +52,35 @@ const VIBRANT_COLORS = [
   ['#d4fc79', '#96e6a1'], // Lime Green
 ];
 
+/**
+ * @component App
+ * @description The root component of the Yogadrishti application.
+ * Manages the flashcard deck, animations, and user interactions.
+ */
 export default function App() {
   const [cards, setCards] = useState<Flashcard[]>(flashcardsData);
   const [currentIndex, setCurrentIndex] = useState(0);
   const { height: screenHeight, width: screenWidth } = useWindowDimensions();
 
+  // Shared values for card animations
   const offset = useSharedValue(0);
   const rotate = useSharedValue(0);
   const isAnimating = useSharedValue(false);
 
+  /**
+   * @effect
+   * @description Resets animation values when the card index changes.
+   */
   useEffect(() => {
     offset.value = 0;
     rotate.value = 0;
     isAnimating.value = false;
   }, [currentIndex]);
 
+  /**
+   * @const {object} panGesture
+   * @description Handles the pan gesture for swiping cards up and down.
+   */
   const panGesture = Gesture.Pan()
     .onUpdate(event => {
       if (isAnimating.value) return;
@@ -70,7 +101,6 @@ export default function App() {
           );
         });
       } else {
-        // **FIX:** Lock gestures during the snap-back animation
         isAnimating.value = true;
         offset.value = withSpring(0, SPRING_CONFIG, () => {
           isAnimating.value = false;
@@ -79,6 +109,14 @@ export default function App() {
       }
     });
 
+  /**
+   * @function renderCard
+   * @description Renders a single flashcard component.
+   * @param {Flashcard | undefined} card - The card data to render.
+   * @param {number} index - The index of the card.
+   * @param {object} style - The animated style to apply to the card.
+   * @returns {React.ReactNode} The rendered card or null.
+   */
   const renderCard = (card: Flashcard | undefined, index: number, style: any) => {
     if (!card) return null;
     const cardColors = VIBRANT_COLORS[card.id % VIBRANT_COLORS.length];
@@ -96,6 +134,10 @@ export default function App() {
   const nextCard = cards[(currentIndex + 1) % cards.length];
   const prevCard = cards[(currentIndex - 1 + cards.length) % cards.length];
 
+  /**
+   * @const {object} animatedCardStyle
+   * @description Animated style for the current card in the deck.
+   */
   const animatedCardStyle = useAnimatedStyle(() => ({
     transform: [
       { translateY: offset.value },
@@ -103,6 +145,10 @@ export default function App() {
     ],
   }));
 
+  /**
+   * @const {object} nextCardStyle
+   * @description Animated style for the next card, revealed during swipe up.
+   */
   const nextCardStyle = useAnimatedStyle(() => ({
     transform: [
       { translateY: interpolate(offset.value, [0, -screenHeight], [screenHeight, 0], Extrapolate.CLAMP) },
@@ -111,6 +157,10 @@ export default function App() {
     opacity: interpolate(offset.value, [0, -screenHeight / 2], [0.8, 1], Extrapolate.CLAMP),
   }));
 
+  /**
+   * @const {object} prevCardStyle
+   * @description Animated style for the previous card, revealed during swipe down.
+   */
   const prevCardStyle = useAnimatedStyle(() => ({
     transform: [
       { translateY: interpolate(offset.value, [0, screenHeight], [-screenHeight, 0], Extrapolate.CLAMP) },
@@ -167,6 +217,10 @@ export default function App() {
   );
 }
 
+/**
+ * @const {object} styles
+ * @description StyleSheet for the application components.
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -182,7 +236,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 42,
-    fontFamily: 'HelveticaNeue-Light', // A more elegant font
+    fontFamily: 'HelveticaNeue-Light',
     color: 'rgba(255, 255, 255, 0.95)',
     letterSpacing: 4,
     marginTop: 20,
